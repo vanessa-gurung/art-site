@@ -1,5 +1,5 @@
 const express = require('express')
-const db = require('../db/diaryComics')
+const db = require('../db/diarycomics')
 
 const router = express.Router()
 
