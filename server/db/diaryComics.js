@@ -5,7 +5,6 @@ module.exports = {
 }
 
 // Diary comic component 
-
 function showDiaryComics(db = connection) {
   return db('diary_comics').select(
     'id',
