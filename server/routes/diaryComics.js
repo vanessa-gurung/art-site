@@ -1,19 +1,19 @@
-const express = require('express')
 
-const db = require('../db/fruits')
+const express = require('express')
+const checkJwt = require('../auth0')
+const db = require('../db/diaryComics')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  db.getFruits()
-    .then(results => {
-      res.json({ fruits: results.map(fruit => fruit.name) })
-      return null
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: 'Somthing went wrong' })
-    })
-})
-
 module.exports = router
+
+// GET /api/v1/diarycomics
+router.get('/', async (req, res) => {
+  try {
+    const diary = await db.showDiaryComics()
+    res.json({ diary })
+  } catch (err) {
+    console.error(err)
+    res.status(500).send(err.message)
+  }
+})
